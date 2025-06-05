@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <title>Login Progresso</title>
 </head>
 <body>
-    <div class="login-logo">
-        <h1>Progresso</h1>
-    </div>
-    <div class="box">
-        <form action="/login" method="POST">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+    <div class="container">
+        <div class="box-login">
+            <div class="login-logo">
+                <img class="icon" src="/assets/imgs/logo.png" alt="logo">
+                <h1>PROGRESSO</h1>
+            </div>
+            <form class="form-login" action="/login" method="POST">
+                <input class="input-logo" type="email" name="email" id="email" placeholder="Email Address">
+                <input class="input-logo" type="password" name="password" id="password" placeholder="Password">
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-
-            <button type="submit">Login</button>
-        </form>
+                <button type="submit">Login</button>
+                <p>New here? <a href="/createAccount">Sign up now!</a></p>
+            </form>
+        </div>
     </div>
 </body>
 </html>

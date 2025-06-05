@@ -1,0 +1,75 @@
+body{
+    background-color: rgb(24, 24, 24);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+}
+
+.login-logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-logo h1{
+    color: white;
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 4rem;
+}
+
+.icon{
+    height: 130px;
+}
+
+.form-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
+.input-logo{
+    height: 45px;
+    width: 300px;
+    border-radius: 13px;
+    background-color: black;
+    color: grey;
+    padding-left: 15px;
+    font-size: 18px;
+}
+
+.form-login button{
+    height: 45px;
+    width: 100%;
+    border-radius: 13px;
+    background-color: red;
+    border: rgb(196, 0, 0);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.form-login p{
+    color: grey;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-login a{
+    color: red;
+}
