@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-    <title>Login Progresso</title>
+    <title>Create Account Progresso</title>
 </head>
 <body>
     <div class="container">
@@ -16,12 +16,12 @@
                 <img class="icon" src="/assets/imgs/logo.png" alt="logo">
                 <h1>PROGRESSO</h1>
             </div>
-            <form class="form-login" action="/login" method="POST">
-                <input class="input-logo" type="text" name="fName" placeholder="First name">
-                <input class="input-logo" type="text" name="lName" placeholder="Last name">
-                <input class="input-logo" type="email" name="email" id="email" placeholder="Email Address">
-                <input class="input-logo" type="password" name="fPassword" placeholder="Create password">
-                <input class="input-logo" type="password" name="sPassword" placeholder="Confirm password">
+            <form class="form-login" action="/createAccount" method="POST">
+                <input class="input-logo" type="text" name="fName" placeholder="First name" required>
+                <input class="input-logo" type="text" name="lName" placeholder="Last name" required>
+                <input class="input-logo" type="email" name="email" id="email" placeholder="Email Address" required>
+                <input class="input-logo" type="password" name="fPassword" placeholder="Create password" required>
+                <input class="input-logo" type="password" name="lPassword" placeholder="Confirm password" required>
 
                 <button type="submit">Create account</button>
             </form>

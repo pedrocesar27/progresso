@@ -37,10 +37,6 @@ app.get("/login", (req, res) => {
     res.render("login.ejs");
 });
 
-app.get("/dashboard", (req, res) => {
-    res.render("dashboard.ejs");
-})
-
 app.get("/createAccount", (req, res) => {
     res.render("createAccount.ejs");
 })
@@ -48,7 +44,7 @@ app.get("/createAccount", (req, res) => {
 app.post("/login", async (req, res) => {
     const user = await checkAccount(req);
     if(user){
-        res.redirect("/dashboard");
+        res.render("dashboard.ejs");
     } else {
         res.send("Invalid email or password")
     }
@@ -66,7 +62,10 @@ app.post("/createAccount", async (req, res) => {
         return res.send("Passwords do not match.");
     }
 
-    await db.query("INSERT INTO (fName, lName, email, fPassword, lPassword) VALUES ($1, $2, $3, $4, $5", [fName, lName, email, fPassword, lPassword]);
+    await db.query(
+        "INSERT INTO users (fname, lname, email, password) VALUES ($1, $2, $3, $4);", 
+        [fName, lName, email, fPassword]
+    );
     res.redirect("/login");
 });
 
