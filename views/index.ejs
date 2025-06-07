@@ -3,13 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/landingPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <title>Progresso</title>
 </head>
 <body>
-    <h1>Welcome to Progresso</h1>
-    
-    <a href="/login">
-        <button>Login</button>
-    </a>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img class="icon" src="/assets/imgs/logo.png" alt="logo-progresso">
+                <h1>PROGRESSO</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a class="item-nav" href="/">Home</a></li>
+                <li><a class="item-nav" href="/about">About Us</a></li>
+                <li><a class="item-nav" href="/contact">Contact</a></li>
+            </ul>
+            <div class="buttons-nav">
+                <a href="/login"><button class="buttons btn-login">Login</button></a>
+                <a href="/createAccount"><button class="buttons btn-create">Create Account</button></a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero" id="welcome">
+            <h1>Welcome to Progresso</h1>
+            <p>Your personal gym companion to track workouts, monitor progress, and stay motivated.</p>
+            <a href="/login"><button class="buttons btn-create login-hero">Login</button></a>
+        </section>
+        <section class="hero" id="why">
+            <h2>Why choose Progresso?</h2>
+            <p>Our platform is designed to help you stay <br> motivated and track your progress</p>
+        </section>
+        <section class="features">
+            <id class="container">
+                <div id="title-features">
+                    <h2>Features</h2>
+                </div>
+                <div class="block">
+                    <img src="/assets/icons/calendar3.svg" alt="calendar icon" class="icon-features">
+                    <h3>Workout <br> Planner</h3>
+                    <p>Create and follow your weekly training plan easily</p>
+                </div>
+                <div class="block">
+                    <img src="/assets/icons/graph-up-arrow.svg" alt="graph icon" class="icon-features">
+                    <h3>Track <br> Progress</h3>
+                    <p>Visualize your strength gains with intuitive charts.</p>
+                </div>
+                <div class="block">
+                    <img src="/assets/icons/biceps.svg" alt="biceps icon" class="icon-features">
+                    <h3>Personal <br> Goals</h3>
+                    <p>Set goals and a tay focused on your fitness journey</p>
+                </div>
+            </id>
+        </section>
+
+        
+    </main>
+    <footer>
+        <nav class="navbar">
+            <div class="copy footer">
+                © 2025 Company, Inc
+            </div>
+            <a href="/"><img src="/assets/imgs/logo.png" alt="progresso logo" class="icon"></a>
+            <ul class="nav-links">
+                <li><a class="item-nav footer" href="/">Home</a></li>
+                <li><a class="item-nav footer" href="/about">About Us</a></li>
+                <li><a class="item-nav footer" href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 </html>
