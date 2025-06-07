@@ -2,9 +2,11 @@ import express from "express";
 import axios from "axios";
 import pg from "pg";
 import dotenv from "dotenv";
-import e from "express";
+import bcrypt from "bcrypt";
+
 dotenv.config();
 
+const saltRounds = 10;
 const app = express();
 const port = 3000;
 const db = new pg.Client({
@@ -19,11 +21,23 @@ db.connect();
 let accounts = [];
 
 async function checkAccount(req){
-    const result = await db.query("SELECT * FROM users");
-    accounts = result.rows;
     const inputEmail = req.body.email;
     const inputPassword = req.body.password;
-    return accounts.find((account) => account.email == inputEmail && account.password == inputPassword);
+
+    const result = await db.query("SELECT * FROM users WHERE email = $1", [inputEmail]);
+    if (result.rows.length === 0){
+        return null;
+    }
+
+    const user = result.rows[0];
+
+    const isMatch = await bcrypt.compare(inputPassword, user.password);
+
+    if(isMatch){
+        return user;
+    }else{
+        return null;
+    }
 }
 
 app.use(express.urlencoded({ extended: true }));
@@ -62,9 +76,11 @@ app.post("/createAccount", async (req, res) => {
         return res.send("Passwords do not match.");
     }
 
+    const hashedPassword = await bcrypt.hash(fPassword, saltRounds);
+
     await db.query(
         "INSERT INTO users (fname, lname, email, password) VALUES ($1, $2, $3, $4);", 
-        [fName, lName, email, fPassword]
+        [fName, lName, email, hashedPassword]
     );
     res.redirect("/login");
 });
