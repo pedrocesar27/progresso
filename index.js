@@ -3,6 +3,7 @@ import axios from "axios";
 import pg from "pg";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
+import session from "express-session";
 
 dotenv.config();
 
@@ -18,7 +19,6 @@ const db = new pg.Client({
 });
 db.connect();
 
-let accounts = [];
 
 async function checkAccount(req){
     const inputEmail = req.body.email;
@@ -40,8 +40,21 @@ async function checkAccount(req){
     }
 }
 
+function requireLogin(req, res, next){
+    if(!req.session.userId){
+        return res.redirect("/login");
+    }
+    next();
+}
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 10 }
+}));
 
 app.get("/", (req, res) => {
     res.render("index.ejs");
@@ -53,12 +66,19 @@ app.get("/login", (req, res) => {
 
 app.get("/createAccount", (req, res) => {
     res.render("createAccount.ejs");
+});
+
+app.get("/dashboard", requireLogin, (req, res) => {
+    res.render("dashboard.ejs");
 })
 
 app.post("/login", async (req, res) => {
     const user = await checkAccount(req);
     if(user){
-        res.render("dashboard.ejs");
+        req.session.userId = user.id;
+        req.session.loggedInAt = new Date();
+        await db.query("UPDATE users SET last_login = NOW() WHERE id = $1", [user.id]);
+        res.redirect("/dashboard");
     } else {
         res.send("Invalid email or password")
     }
@@ -79,7 +99,7 @@ app.post("/createAccount", async (req, res) => {
     const hashedPassword = await bcrypt.hash(fPassword, saltRounds);
 
     await db.query(
-        "INSERT INTO users (fname, lname, email, password) VALUES ($1, $2, $3, $4);", 
+        "INSERT INTO users (fName, lName, email, password) VALUES ($1, $2, $3, $4);", 
         [fName, lName, email, hashedPassword]
     );
     res.redirect("/login");
