@@ -16,6 +16,12 @@
                 <img class="icon" src="/assets/imgs/logo.png" alt="logo">
                 <h1>PROGRESSO</h1>
             </div>
+            <% if(error){ %>
+                <div class="box-hidden">
+                    <h3>Something went wrong!</h3>
+                    <p><%= error %></p>
+                </div>
+            <% } %>
             <form class="form-login" action="/login" method="POST">
                 
                 <input class="input-logo" type="email" name="email" id="email" placeholder="Email Address">
